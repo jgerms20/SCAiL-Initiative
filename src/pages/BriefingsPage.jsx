@@ -5,13 +5,21 @@ import { Calendar, BarChart3, MessagesSquare, Mail, Download, FileText, MapPin }
 
 const BRIEFS = [
   {
+    id: 'muse-outreach',
+    title: 'Outreach Plan (Muse)',
+    subtitle: 'Libraries, schools, churches — who, what to say, rules',
+    icon: Mail,
+    file: '/docs/muse-outreach-plan.md',
+    accent: 'from-amber-500 to-orange-600',
+    badge: 'NEW',
+  },
+  {
     id: 'sc-trip',
     title: 'SC Trip — July 6',
     subtitle: 'Meeting agenda + outreach templates',
     icon: MapPin,
     file: '/docs/sc-trip-july-2026.md',
     accent: 'from-green-500 to-emerald-600',
-    badge: 'NOW',
   },
   {
     id: 'week',
@@ -48,7 +56,7 @@ const BRIEFS = [
 ]
 
 export default function BriefingsPage() {
-  const [activeId, setActiveId] = useState('sc-trip')
+  const [activeId, setActiveId] = useState('muse-outreach')
   const [content, setContent] = useState('')
   const [loading, setLoading] = useState(true)
 
@@ -79,7 +87,7 @@ export default function BriefingsPage() {
       </div>
 
       {/* Tab Cards */}
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {BRIEFS.map((brief) => {
           const Icon = brief.icon
           const isActive = brief.id === activeId
