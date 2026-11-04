@@ -1,31 +1,24 @@
-import PalmettoTree from './PalmettoTree'
-import SCCrescent from './SCCrescent'
-import Reveal from './Reveal'
+import NightScene from './NightScene'
 
-// Shared hero banner for interior pages — navy night sky with palmettos.
-export default function PageHero({ title, accent, subtitle, children }) {
+// Night-sky header used by every interior page.
+export default function PageHero({ eyebrow, title, children }) {
   return (
-    <section className="relative bg-gradient-to-b from-brand-navy-deep to-brand-navy text-white py-20 sm:py-24 overflow-hidden">
-      <div className="absolute inset-0 bg-grid-faint pointer-events-none" aria-hidden="true" />
-      <SCCrescent className="absolute top-8 right-[16%] h-8 w-8 text-brand-gold/50 animate-pulse-soft pointer-events-none" />
-      <div className="absolute bottom-0 -left-2 text-black/20 pointer-events-none" aria-hidden="true">
-        <PalmettoTree className="h-36 sm:h-44 w-auto" />
+    <NightScene>
+      <div className="mx-auto max-w-7xl px-5 sm:px-8 pt-40 pb-32 sm:pt-48 sm:pb-40">
+        {eyebrow && (
+          <p className="rise eyebrow text-sea" style={{ '--d': '0ms' }}>
+            {eyebrow}
+          </p>
+        )}
+        <h1 className="rise mt-4 max-w-4xl text-5xl leading-[1.02] sm:text-7xl" style={{ '--d': '90ms' }}>
+          {title}
+        </h1>
+        {children && (
+          <div className="rise mt-6 max-w-2xl text-lg text-moon/75 sm:text-xl" style={{ '--d': '180ms' }}>
+            {children}
+          </div>
+        )}
       </div>
-      <div className="absolute bottom-0 -right-2 text-black/20 pointer-events-none" aria-hidden="true">
-        <PalmettoTree className="h-32 sm:h-40 w-auto" style={{ transform: 'scaleX(-1)' }} />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <Reveal>
-          <h1 className="text-4xl sm:text-5xl font-bold tracking-tight mb-4 text-balance">
-            {title} {accent && <span className="text-gradient-gold">{accent}</span>}
-          </h1>
-          {subtitle && (
-            <p className="text-xl text-slate-300 font-light max-w-2xl mx-auto">{subtitle}</p>
-          )}
-          {children}
-        </Reveal>
-      </div>
-    </section>
+    </NightScene>
   )
 }

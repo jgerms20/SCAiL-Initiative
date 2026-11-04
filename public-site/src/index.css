@@ -1,90 +1,180 @@
 @import "tailwindcss";
 
+/* The theme toggle adds/removes `.dark` on <html>. Without this line Tailwind v4
+   follows the OS setting instead, and the toggle silently does nothing. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ── Semantic tokens ──────────────────────────────────────────────────────────
+   Light = sweetgrass paper and indigo ink. Dark = the flag's night sky.
+   Components use the semantic names (paper, ink, line, …) so both themes come
+   for free; `night` sections stay indigo in either theme on purpose. */
+:root {
+  --paper: #f6f1e7;
+  --surface: #fffdf8;
+  --surface-2: #efe8da;
+  --ink: #0e1b33;
+  --ink-soft: #3b4660;
+  --muted: #6a7286;
+  --line: #e3d9c6;
+  --gold: #a87a1f;
+  --teal: #13756c;
+  --coral: #b4553c;
+}
+.dark {
+  --paper: #061229;
+  --surface: #0c1d3b;
+  --surface-2: #112650;
+  --ink: #eef1f7;
+  --ink-soft: #c4ccdc;
+  --muted: #8f9bb3;
+  --line: #1d3157;
+  --gold: #e2b857;
+  --teal: #46d3c4;
+  --coral: #ee8c6f;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-muted: var(--muted);
+  --color-line: var(--line);
+  --color-gold: var(--gold);
+  --color-teal: var(--teal);
+  --color-coral: var(--coral);
+}
+
 @theme {
-  --color-brand-navy: #1B365D;
-  --color-brand-navy-light: #234577;
-  --color-brand-navy-deep: #0F2240;
-  --color-brand-gold: #D4A843;
-  --color-brand-gold-light: #E8C36A;
-  --color-brand-teal: #2EC4B6;
-  --color-brand-teal-light: #5DD4C8;
+  /* Fixed brand colors, identical in both themes */
+  --color-night: #0a1f44;
+  --color-night-deep: #050f24;
+  --color-flag: #003366;
+  --color-moon: #f4efe2;
+  --color-sun: #e2b857;
+  --color-sea: #46d3c4;
 
-  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-display: 'Gloock', 'Georgia', serif;
+  --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 
-  --animate-float-slow: float 9s ease-in-out infinite;
-  --animate-float-slower: float 13s ease-in-out infinite reverse;
-  --animate-marquee: marquee 30s linear infinite;
-  --animate-pulse-soft: pulse-soft 4s ease-in-out infinite;
+  --animate-drift: drift 14s ease-in-out infinite;
+  --animate-sway: sway 9s ease-in-out infinite;
+  --animate-twinkle: twinkle 5s ease-in-out infinite;
+  --animate-marquee: marquee 38s linear infinite;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
   }
   body {
-    font-family: var(--font-sans);
     margin: 0;
-    @apply bg-white text-slate-900 dark:bg-slate-900 dark:text-slate-100;
+    font-family: var(--font-sans);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.4s ease, color 0.4s ease;
+  }
+  ::selection {
+    background: var(--color-sun);
+    color: var(--color-night);
+  }
+  :focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  h1, h2, h3 {
+    font-family: var(--font-display);
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
   }
 }
 
-/* ── Keyframes ─────────────────────────────────────────────── */
+/* ── Utilities ────────────────────────────────────────────────────────────── */
 
-@keyframes float {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33%      { transform: translate(30px, -24px) scale(1.06); }
-  66%      { transform: translate(-20px, 16px) scale(0.97); }
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
 }
 
+/* Film grain so flat fills feel printed, not plastic */
+.grain::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+/* Night sky used by hero bands */
+.night-sky {
+  background:
+    radial-gradient(ellipse 80% 60% at 75% 110%, rgba(70, 211, 196, 0.16), transparent 60%),
+    radial-gradient(ellipse 60% 50% at 15% 10%, rgba(226, 184, 87, 0.12), transparent 60%),
+    linear-gradient(180deg, #050f24 0%, #0a1f44 55%, #0e2a57 100%);
+}
+
+/* Indigo "ink" underline for links in body copy */
+.ink-link {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s ease;
+}
+.ink-link:hover { background-size: 100% 1px; }
+
+/* ── Motion ───────────────────────────────────────────────────────────────── */
+
+@keyframes drift {
+  0%, 100% { transform: translate(0, 0); }
+  50% { transform: translate(18px, -14px); }
+}
+@keyframes sway {
+  0%, 100% { transform: rotate(-0.8deg); }
+  50% { transform: rotate(0.8deg); }
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; }
+  50% { opacity: 0.9; }
+}
 @keyframes marquee {
   from { transform: translateX(0); }
-  to   { transform: translateX(-50%); }
+  to { transform: translateX(-50%); }
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: none; }
 }
 
-@keyframes pulse-soft {
-  0%, 100% { opacity: 0.55; }
-  50%      { opacity: 1; }
+/* Page-load stagger: add .rise and a --d delay */
+.rise {
+  opacity: 0;
+  animation: rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: var(--d, 0ms);
 }
 
-/* ── Scroll reveal ─────────────────────────────────────────── */
-
+/* Scroll reveal (see components/Reveal.jsx) */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition:
-    opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1),
-    transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-  will-change: opacity, transform;
+  transform: translateY(26px);
+  transition: opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
-
-.reveal-visible {
-  opacity: 1;
-  transform: none;
-}
+.reveal-visible { opacity: 1; transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
-  .reveal {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-  [class*="animate-"] {
-    animation: none !important;
-  }
-}
-
-/* ── Texture / atmosphere helpers ──────────────────────────── */
-
-.bg-grid-faint {
-  background-image:
-    linear-gradient(to right, rgba(255, 255, 255, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
-  background-size: 56px 56px;
-}
-
-.text-gradient-gold {
-  background: linear-gradient(110deg, #E8C36A 10%, #D4A843 45%, #F5DFA0 70%, #D4A843 95%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  html { scroll-behavior: auto; }
+  .reveal, .rise { opacity: 1; transform: none; animation: none; }
+  [class*='animate-'] { animation: none !important; }
 }
