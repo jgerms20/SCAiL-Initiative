@@ -5,14 +5,8 @@ import NightScene from '../components/NightScene'
 import Reveal from '../components/Reveal'
 import { Crescent } from '../components/Palmetto'
 import { team } from '../data/team'
-import { asset } from '../site'
+import Manifesto from '../components/Manifesto'
 
-const VALUES = [
-  { n: '01', title: 'Access over exclusion', body: 'AI education for everyone, regardless of background, age, or technical experience.' },
-  { n: '02', title: 'Meet people where they are', body: 'We bring workshops to communities. We don’t wait for them to come to us.' },
-  { n: '03', title: 'Practical over theoretical', body: 'Real skills you can use today. Not abstract concepts or academic lectures.' },
-  { n: '04', title: 'Community first', body: 'Built by and for the communities we serve. Local ownership, local impact.' },
-]
 
 const AUDIENCES = [
   'Working adults & job seekers',
@@ -50,7 +44,7 @@ export default function AboutPage() {
 
   return (
     <>
-      <PageHero eyebrow="About" title="Built at home, for home.">
+      <PageHero eyebrow="About" title="Closing the AI gap, county by county.">
         <p>SCAiL exists so no South Carolina community gets left behind as AI reshapes work and daily life.</p>
       </PageHero>
 
@@ -95,16 +89,7 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={120}>
-              <figure className="mt-14 max-w-2xl overflow-hidden rounded-3xl">
-                <img
-                  src={asset('media/joshua-janel.jpg')}
-                  alt="Joshua German and Janel Moore in front of a wall of wooden bookshelves"
-                  className="aspect-[3/2] w-full object-cover"
-                  loading="lazy"
-                />
-                <figcaption className="mt-3 text-sm text-muted">Joshua German, founder, and Janel Moore, treasurer.</figcaption>
-              </figure>
-              <div className="mt-8 max-w-2xl rounded-3xl border border-line bg-paper p-8 sm:p-10">
+              <div className="mt-14 max-w-2xl rounded-3xl border border-line bg-paper p-8 sm:p-10">
                 <p className="eyebrow text-coral">A note on the founder</p>
                 <p className="mt-5 text-ink-soft">{joshua.bio}</p>
                 <p className="mt-4 text-ink-soft">
@@ -120,36 +105,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── Values ───────────────────────────────────────────────────────── */}
-      <section className="mx-auto max-w-7xl px-5 sm:px-8 py-28 sm:py-36">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-16">
-          <div className="lg:col-span-4">
-            <Reveal>
-              <div className="lg:sticky lg:top-32">
-                <p className="eyebrow text-gold">What we believe</p>
-                <h2 className="mt-5 text-4xl leading-[1.08] sm:text-5xl">Four commitments we teach by.</h2>
-                <Link to="/manifesto" className="group mt-7 inline-flex items-center gap-2 font-semibold text-ink">
-                  Read the full manifesto
-                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </div>
-            </Reveal>
-          </div>
-          <ol className="lg:col-span-8">
-            {VALUES.map((v, i) => (
-              <Reveal key={v.n} delay={i * 80}>
-                <li className="grid gap-4 border-t border-line py-9 sm:grid-cols-[6rem_1fr] sm:gap-8">
-                  <span className="font-display text-5xl text-gold sm:text-6xl">{v.n}</span>
-                  <div>
-                    <h3 className="text-2xl sm:text-3xl">{v.title}</h3>
-                    <p className="mt-3 max-w-xl text-ink-soft">{v.body}</p>
-                  </div>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
-        </div>
-      </section>
+      {/* ── Manifesto ────────────────────────────────────────────────────── */}
+      <Manifesto />
 
       {/* ── Who we serve ─────────────────────────────────────────────────── */}
       <section className="border-y border-line bg-surface-2">
