@@ -9,9 +9,7 @@ export const SOCIAL = {
 }
 
 // Joshua's own shows, featured on the Resources page.
-// The Spotify/Apple/YouTube entries are search links (they always land on the
-// right show) because the exact show URLs weren't available when this was built.
-// Paste the direct links here when you have them; nothing else needs to change.
+// Links come from the Curious & Creative network's own show data.
 export const FOUNDER_SHOWS = [
   {
     id: 'approachable-ai',
@@ -20,22 +18,23 @@ export const FOUNDER_SHOWS = [
     logo: 'media/approachable-ai.png',
     line: 'Joshua’s show on using AI without the jargon: what the tools actually do, and how to start building with them.',
     links: [
-      { label: 'YouTube', url: 'https://www.youtube.com/results?search_query=Approachable+AI+Joshua+German' },
-      { label: 'Spotify', url: 'https://open.spotify.com/search/Approachable%20AI/podcasts' },
+      { label: 'YouTube', url: 'https://www.youtube.com/@Approachable.A.I' },
+      { label: 'Spotify', url: 'https://open.spotify.com/show/0341xuu1WqXu4NiFUkdTFl' },
     ],
   },
   {
     id: 'eclectic-polymath',
     name: 'The Eclectic Polymath Podcast',
     kind: 'Podcast',
+    logo: 'media/eclectic-polymath.jpg',
     line: 'Deep dives on history, culture, religion, world leaders and technology, with new episodes every week.',
     featured: {
       label: 'Start with: Anthropic by the Numbers',
       url: 'https://open.spotify.com/episode/1sPFk3tLCuKqSKlX5gvwFh',
     },
     links: [
-      { label: 'Spotify', url: 'https://open.spotify.com/search/The%20Eclectic%20Polymath%20Podcast/podcasts' },
-      { label: 'Apple Podcasts', url: 'https://podcasts.apple.com/us/search?term=The%20Eclectic%20Polymath%20Podcast' },
+      { label: 'Spotify', url: 'https://open.spotify.com/show/3dlagzJ0jiWLTB9mF3y069' },
+      { label: 'Apple Podcasts', url: 'https://podcasts.apple.com/us/podcast/the-eclectic-polymath-podcast/id6790238134' },
       { label: 'X', url: 'https://x.com/Eclectic_Plymth' },
     ],
   },
@@ -43,8 +42,8 @@ export const FOUNDER_SHOWS = [
 
 export const NAV = [
   { to: '/', label: 'Home' },
-  { to: '/programs', label: 'Programs' },
   { to: '/about', label: 'About' },
+  { to: '/programs', label: 'Programs' },
   { to: '/team', label: 'Team' },
   { to: '/resources', label: 'Resources' },
 ]

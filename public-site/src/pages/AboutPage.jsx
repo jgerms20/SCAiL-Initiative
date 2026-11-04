@@ -5,6 +5,7 @@ import NightScene from '../components/NightScene'
 import Reveal from '../components/Reveal'
 import { Crescent } from '../components/Palmetto'
 import { team } from '../data/team'
+import { asset } from '../site'
 
 const VALUES = [
   { n: '01', title: 'Access over exclusion', body: 'AI education for everyone, regardless of background, age, or technical experience.' },
@@ -94,7 +95,16 @@ export default function AboutPage() {
             </Reveal>
 
             <Reveal delay={120}>
-              <div className="mt-14 max-w-2xl rounded-3xl border border-line bg-paper p-8 sm:p-10">
+              <figure className="mt-14 max-w-2xl overflow-hidden rounded-3xl">
+                <img
+                  src={asset('media/joshua-janel.jpg')}
+                  alt="Joshua German and Janel Moore in front of a wall of wooden bookshelves"
+                  className="aspect-[3/2] w-full object-cover"
+                  loading="lazy"
+                />
+                <figcaption className="mt-3 text-sm text-muted">Joshua German, founder, and Janel Moore, treasurer.</figcaption>
+              </figure>
+              <div className="mt-8 max-w-2xl rounded-3xl border border-line bg-paper p-8 sm:p-10">
                 <p className="eyebrow text-coral">A note on the founder</p>
                 <p className="mt-5 text-ink-soft">{joshua.bio}</p>
                 <p className="mt-4 text-ink-soft">

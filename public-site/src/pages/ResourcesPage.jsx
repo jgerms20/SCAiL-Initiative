@@ -211,7 +211,7 @@ function FounderFeature() {
       <Reveal>
         <div className="grid overflow-hidden rounded-[2rem] border border-line bg-surface lg:grid-cols-[minmax(0,360px)_1fr]">
           <div className="relative">
-            <Avatar person={joshua} className="h-full min-h-80 w-full" />
+            <Avatar person={joshua} photo={joshua.portrait} className="h-full min-h-80 w-full" />
             <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/90 to-transparent p-6 text-moon">
               <p className="eyebrow text-sea">From our founder</p>
               <p className="mt-2 font-display text-3xl">{joshua.name}</p>
@@ -460,7 +460,7 @@ export default function ResourcesPage() {
           <section id="watch" className="mx-auto max-w-7xl px-5 sm:px-8 py-28 sm:py-32">
             <Reveal>
               <SectionHead eyebrow="Watch" tone="text-coral" title="Creators who explain AI on video.">
-                Each card opens YouTube to that creator, so you can pick whichever video looks most useful.
+                Each card opens YouTube for that creator, so you can pick whichever video looks most useful.
               </SectionHead>
             </Reveal>
             <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">

@@ -154,7 +154,7 @@ export default function SiteLayout() {
               </a>
             </div>
 
-            <FooterCol title="Explore" links={[['/programs', 'Programs'], ['/about', 'About'], ['/team', 'Team'], ['/resources', 'Resources']]} />
+            <FooterCol title="Explore" links={[['/about', 'About'], ['/programs', 'Programs'], ['/team', 'Team'], ['/resources', 'Resources']]} />
             <FooterCol title="Take part" links={[['/get-involved', 'Get involved'], ['/programs#request', 'Request a workshop'], ['/get-involved#newsletter', 'Newsletter']]} />
             <div>
               <h4 className="eyebrow text-moon/45 mb-4">Follow</h4>

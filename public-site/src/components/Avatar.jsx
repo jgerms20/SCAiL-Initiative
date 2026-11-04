@@ -5,15 +5,16 @@ import { Palmetto } from './Palmetto'
 
 // Portrait with a monogram fallback, shown until a real photo is added
 // (see src/data/team.js) or if the photo fails to load.
-export default function Avatar({ person, className = '' }) {
+export default function Avatar({ person, photo, className = '' }) {
   const [failed, setFailed] = useState(false)
-  const showPhoto = person.photo && !failed
+  const src = photo ?? person.photo
+  const showPhoto = src && !failed
 
   return (
     <div className={`relative overflow-hidden bg-night ${className}`}>
       {showPhoto ? (
         <img
-          src={asset(person.photo)}
+          src={asset(src)}
           alt={`Portrait of ${person.name}`}
           className="h-full w-full object-cover"
           loading="lazy"

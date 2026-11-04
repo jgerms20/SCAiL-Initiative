@@ -16,6 +16,8 @@ export const team = [
     hometown: 'Irmo, SC',
     focus: 'Vision, partnerships, storytelling',
     photo: 'team/joshua-german.jpg',
+    // A newer, more personal portrait used on Resources ("Learn with Joshua")
+    portrait: 'media/joshua-portrait.jpg',
     linkedin: null,
     bio: 'Born and raised in Irmo and a Dutch Fork High School graduate, with family roots in Walterboro and Charleston. Joshua studied journalism at the University of South Carolina, attended Midlands Technical College, and built a career in advertising and marketing before founding SCAiL in 2026 to make sure AI reaches every community in the state.',
   },
@@ -25,7 +27,7 @@ export const team = [
     role: 'Treasurer',
     hometown: 'South Carolina',
     focus: 'Budget, banking, grant reporting',
-    photo: null,
+    photo: 'team/janel-moore.jpg',
     linkedin: null,
     bio: 'A finance professional at JP Morgan and a 2021 University of South Carolina graduate in International Affairs, active in Alpha Kappa Psi. Janel oversees SCAiL’s budget, financial controls, and grant reporting.',
   },
