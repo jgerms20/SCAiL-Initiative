@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { ArrowRight, ArrowUpRight } from 'lucide-react'
+import { ArrowRight, ArrowUpRight, Heart, Briefcase, Store, GraduationCap, Church } from 'lucide-react'
 import NightScene from '../components/NightScene'
 import SCMap from '../components/SCMap'
 import Reveal from '../components/Reveal'
@@ -7,9 +7,12 @@ import Avatar from '../components/Avatar'
 import { Crescent } from '../components/Palmetto'
 import { pathways, courses } from '../data/programs'
 import { team } from '../data/team'
+import { solutions } from '../data/solutions'
 import { mailto } from '../site'
 
 const TICKER = ['Free, always', 'No tech background needed', 'We come to you', 'Churches', 'Libraries', 'Community centers', 'Schools', 'Seniors to students', 'All 46 counties']
+
+const TRACK_ICONS = { heart: Heart, briefcase: Briefcase, store: Store, graduation: GraduationCap, church: Church }
 
 const PRINCIPLES = [
   { n: '01', title: 'Free, every time', body: 'No fees, no laptops required, no catch. If cost is the barrier, we’ve already lost.' },
@@ -79,6 +82,25 @@ export default function HomePage() {
         </div>
       </div>
 
+      {/* ── Right now ────────────────────────────────────────────────────── */}
+      <div className="border-b border-line bg-surface">
+        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+          <p className="flex items-center gap-3 text-[15px]">
+            <span className="relative flex h-2.5 w-2.5">
+              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-sea opacity-60" />
+              <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-sea" />
+            </span>
+            <span>
+              <span className="font-semibold">Right now:</span>{' '}
+              <span className="text-ink-soft">we’re booking our first host sites in the Midlands: libraries, churches, schools and community centers.</span>
+            </span>
+          </p>
+          <Link to="/programs#request" className="group inline-flex shrink-0 items-center gap-2 text-[15px] font-semibold text-ink">
+            Host a free class <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </div>
+      </div>
+
       {/* ── Why ──────────────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-7xl px-5 sm:px-8 py-28 sm:py-36">
         <Reveal>
@@ -101,7 +123,54 @@ export default function HomePage() {
             </Reveal>
           ))}
         </div>
+        <Reveal delay={150}>
+          <Link to="/manifesto" className="group mt-10 inline-flex items-center gap-2 font-semibold text-ink">
+            Read our manifesto <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+          </Link>
+        </Reveal>
       </section>
+
+      {/* ── AI for You ───────────────────────────────────────────────────── */}
+      <NightScene>
+        <div className="mx-auto max-w-7xl px-5 sm:px-8 py-28 sm:py-36">
+          <Reveal>
+            <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+              <div className="max-w-2xl">
+                <p className="eyebrow text-sea">AI for You</p>
+                <h2 className="mt-5 text-4xl leading-[1.08] sm:text-6xl">
+                  <span className="text-sun">AI</span> for the life you already live.
+                </h2>
+                <p className="mt-6 text-lg text-moon/70">
+                  Pick the part of your life you want help with. Each one comes with real things to try tonight, how to stay safe, and the free class that fits.
+                </p>
+              </div>
+              <Link to="/solutions" className="group inline-flex items-center gap-2 font-semibold text-moon">
+                See all five <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </div>
+          </Reveal>
+          <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            {solutions.map((t, i) => {
+              const Icon = TRACK_ICONS[t.icon] ?? Heart
+              return (
+                <Reveal key={t.slug} delay={i * 90}>
+                  <Link
+                    to={`/solutions/${t.slug}`}
+                    className="group flex h-full flex-col rounded-3xl border border-moon/10 bg-night/70 p-7 backdrop-blur transition duration-300 hover:-translate-y-1 hover:border-sun/40 hover:bg-night"
+                  >
+                    <Icon className={`h-7 w-7 ${t.color === 'coral' ? 'text-coral' : t.color === 'sun' ? 'text-sun' : 'text-sea'}`} />
+                    <p className="eyebrow mt-8 text-moon/50">AI for</p>
+                    <h3 className="mt-2 text-2xl leading-tight text-moon">{t.name}</h3>
+                    <span className="mt-auto inline-flex items-center gap-1.5 pt-8 text-sm font-semibold text-moon/70 transition group-hover:text-sun">
+                      Explore <ArrowUpRight className="h-4 w-4" />
+                    </span>
+                  </Link>
+                </Reveal>
+              )
+            })}
+          </div>
+        </div>
+      </NightScene>
 
       {/* ── Map ──────────────────────────────────────────────────────────── */}
       <section className="border-y border-line bg-surface">
@@ -196,6 +265,24 @@ export default function HomePage() {
           </Reveal>
         </div>
       </NightScene>
+
+      {/* ── Stories teaser ───────────────────────────────────────────────── */}
+      <section className="border-b border-line bg-surface">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-24 sm:px-8 lg:grid-cols-12 lg:items-center">
+          <Reveal className="lg:col-span-7">
+            <p className="eyebrow text-coral">Stories &amp; impact</p>
+            <h2 className="mt-5 text-4xl leading-[1.08] sm:text-5xl">A grandmother who hangs up on a fake “grandson.” A barber with a full book.</h2>
+          </Reveal>
+          <Reveal delay={120} className="lg:col-span-5">
+            <p className="text-lg text-ink-soft">
+              These are the moments our classes are built for. See what AI literacy looks like in real South Carolina lives, and how we’ll measure the difference we make.
+            </p>
+            <Link to="/stories" className="group mt-7 inline-flex items-center gap-2 font-semibold text-ink">
+              Read the stories <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Reveal>
+        </div>
+      </section>
 
       {/* ── Team ─────────────────────────────────────────────────────────── */}
       <section className="mx-auto max-w-7xl px-5 sm:px-8 py-28 sm:py-36">

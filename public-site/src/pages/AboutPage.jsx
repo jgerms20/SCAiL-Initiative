@@ -128,6 +128,10 @@ export default function AboutPage() {
               <div className="lg:sticky lg:top-32">
                 <p className="eyebrow text-gold">What we believe</p>
                 <h2 className="mt-5 text-4xl leading-[1.08] sm:text-5xl">Four commitments we teach by.</h2>
+                <Link to="/manifesto" className="group mt-7 inline-flex items-center gap-2 font-semibold text-ink">
+                  Read the full manifesto
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                </Link>
               </div>
             </Reveal>
           </div>

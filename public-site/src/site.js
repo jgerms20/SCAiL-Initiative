@@ -40,10 +40,12 @@ export const FOUNDER_SHOWS = [
   },
 ]
 
+// Desktop nav (the logo is the link home). Mobile adds Home and Get involved.
 export const NAV = [
-  { to: '/', label: 'Home' },
   { to: '/about', label: 'About' },
+  { to: '/solutions', label: 'AI for You' },
   { to: '/programs', label: 'Programs' },
+  { to: '/stories', label: 'Stories' },
   { to: '/team', label: 'Team' },
   { to: '/resources', label: 'Resources' },
 ]

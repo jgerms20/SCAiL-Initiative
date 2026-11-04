@@ -29,7 +29,7 @@ export default function NightScene({ children, variant = 'band', moon = true, cl
       </div>
 
       {/* the flag's crescent, upper left, as on the flag */}
-      {moon && <Crescent className="absolute -z-10 left-[5%] top-24 w-10 text-moon/90 sm:w-14" />}
+      {moon && <Crescent className="absolute -z-10 left-[5%] top-8 w-10 text-moon/90 sm:top-10 sm:w-14" />}
 
       {/* horizon line of palmettos */}
       <div className="absolute inset-x-0 bottom-0 -z-10 flex items-end justify-between px-[2%] text-night-deep" aria-hidden="true">

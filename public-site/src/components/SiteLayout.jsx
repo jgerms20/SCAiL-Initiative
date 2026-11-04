@@ -113,7 +113,7 @@ export default function SiteLayout() {
 
         {open && (
           <nav className="lg:hidden border-t border-line bg-paper px-5 pb-6 pt-2" aria-label="Mobile">
-            {[...NAV, { to: '/get-involved', label: 'Get involved' }].map((l, i) => (
+            {[{ to: '/', label: 'Home' }, ...NAV, { to: '/get-involved', label: 'Get involved' }].map((l, i) => (
               <NavLink
                 key={l.to}
                 to={l.to}
@@ -154,8 +154,8 @@ export default function SiteLayout() {
               </a>
             </div>
 
-            <FooterCol title="Explore" links={[['/about', 'About'], ['/programs', 'Programs'], ['/team', 'Team'], ['/resources', 'Resources']]} />
-            <FooterCol title="Take part" links={[['/get-involved', 'Get involved'], ['/programs#request', 'Request a workshop'], ['/get-involved#newsletter', 'Newsletter']]} />
+            <FooterCol title="Explore" links={[['/about', 'About'], ['/manifesto', 'Manifesto'], ['/solutions', 'AI for You'], ['/programs', 'Programs'], ['/stories', 'Stories'], ['/team', 'Team'], ['/resources', 'Resources']]} />
+            <FooterCol title="Take part" links={[['/get-involved', 'Get involved'], ['/programs#request', 'Request a workshop'], ['/solutions/churches', 'For churches'], ['/solutions/small-business', 'For small businesses'], ['/get-involved#newsletter', 'Newsletter']]} />
             <div>
               <h4 className="eyebrow text-moon/45 mb-4">Follow</h4>
               <a href={SOCIAL.x} target="_blank" rel="noopener noreferrer" className="text-moon/80 hover:text-moon">

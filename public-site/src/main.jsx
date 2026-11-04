@@ -10,6 +10,10 @@ import ProgramsPage from './pages/ProgramsPage'
 import TeamPage from './pages/TeamPage'
 import GetInvolvedPage from './pages/GetInvolvedPage'
 import ResourcesPage from './pages/ResourcesPage'
+import SolutionsPage from './pages/SolutionsPage'
+import SolutionPage from './pages/SolutionPage'
+import ManifestoPage from './pages/ManifestoPage'
+import StoriesPage from './pages/StoriesPage'
 
 const router = createHashRouter([
   {
@@ -22,6 +26,10 @@ const router = createHashRouter([
       { path: 'team', element: <TeamPage /> },
       { path: 'resources', element: <ResourcesPage /> },
       { path: 'get-involved', element: <GetInvolvedPage /> },
+      { path: 'solutions', element: <SolutionsPage /> },
+      { path: 'solutions/:slug', element: <SolutionPage /> },
+      { path: 'manifesto', element: <ManifestoPage /> },
+      { path: 'stories', element: <StoriesPage /> },
       // old links
       { path: 'contact', element: <Navigate to="/get-involved" replace /> },
       { path: '*', element: <Navigate to="/" replace /> },
