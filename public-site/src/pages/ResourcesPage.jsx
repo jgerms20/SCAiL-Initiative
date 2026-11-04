@@ -3,52 +3,73 @@ import { Link } from 'react-router-dom'
 import { ArrowRight, ArrowUpRight, Plus, ShieldAlert } from 'lucide-react'
 import PageHero from '../components/PageHero'
 import Reveal from '../components/Reveal'
+import Avatar from '../components/Avatar'
+import { FOUNDER_SHOWS, asset, mailto } from '../site'
+import { team } from '../data/team'
 
+// Every article carries a date (sorted newest first within each group).
+// Items whose publish date couldn't be confirmed were removed rather than shown undated.
 const articles = [
   {
     category: 'South Carolina',
     items: [
       {
+        date: '2026-10-14',
+        title: 'SC Department of Education Creates Office to Navigate AI and New Technology',
+        source: 'Count on 2 (WCBD)',
+        url: 'https://www.counton2.com/news/south-carolina-news/sc-department-of-education-creates-office-to-navigate-ai-and-new-technology/',
+        description: 'The state’s new office aims to give districts a shared vision for AI in classrooms. Most districts don’t have AI policies yet, and most teachers say they want guidance.',
+      },
+      {
+        date: '2026-09-23',
+        title: 'Tech Week Greenville Spotlights AI in Classrooms and the Workplace',
+        source: 'Fox Carolina',
+        url: 'https://www.foxcarolina.com/2026/09/23/tech-week-greenville-spotlights-ai-classrooms-workplace/',
+        description: 'Upstate educators and employers on how AI is already changing teaching and work, and what people need to keep up.',
+      },
+      {
+        date: '2026-09-01',
+        dateLabel: 'Fall 2026',
+        title: 'The SC Tech Bulletin: Fall 2026',
+        source: 'SC Council on Competitiveness',
+        url: 'https://www.sccompetes.org/resource/the-sc-tech-bulletin-fall-2026/',
+        description: 'A roundup of South Carolina’s tech and AI ecosystem, including free statewide learning opportunities like the “AI in the AM” webinar series.',
+      },
+      {
+        date: '2026-08-21',
+        title: 'Schools Are Starting to Teach AI Literacy. For Many, That Means Helping Kids See Chatbots’ Flaws',
+        source: 'Associated Press via U.S. News',
+        url: 'https://www.usnews.com/news/best-states/south-carolina/articles/2026-08-21/schools-are-starting-to-teach-ai-literacy-for-many-that-means-helping-kids-see-chatbots-flaws',
+        description: 'Charleston-area educators build an AI policy and train staff, while the AP notes South Carolina hasn’t yet published statewide AI guidance for schools.',
+      },
+      {
+        date: '2025-08-19',
         title: 'An AI Divide Is Growing in Schools. This Camp Wants to Level the Playing Field',
         source: 'South Carolina Public Radio',
         url: 'https://www.southcarolinapublicradio.org/2025-08-19/an-ai-divide-is-growing-in-schools-this-camp-wants-to-level-the-playing-field',
-        description:
-          'How the AI skills gap is showing up in SC classrooms and what community-driven programs are doing about it.',
+        description: 'How the AI skills gap shows up in SC classrooms, and what community-driven programs are doing about it.',
       },
       {
-        title: "South Carolina Tech Industry Intensifies State's Economic Growth",
-        source: 'Columbia Business Monthly',
-        url: 'https://www.columbiabusinessmonthly.com/2024/10/14/509275/new-study-south-carolina-tech-industry-intensifies-state-s-economic-growth',
-        description:
-          "SC's tech economy is booming — but without AI literacy, many communities won't share in the growth.",
-      },
-      {
-        title: 'South Carolina Nears End of Digital Divide',
-        source: 'SC Office of Regulatory Staff',
-        url: 'https://ors.sc.gov/news/south-carolina-nears-end-digital-divide',
-        description:
-          'Broadband access is expanding across SC — now the challenge shifts from connectivity to capability.',
-      },
-      {
-        title: '2025-2026 Bill 3201: Computer Science Education Initiative Act',
-        source: 'SC Legislature',
-        url: 'https://www.scstatehouse.gov/sess126_2025-2026/bills/3201.htm',
-        description:
-          'Proposed legislation to expand computer science education in SC schools — a step toward broader AI literacy.',
-      },
-      {
-        title: 'Palmetto Connect: Fostering Digital Inclusion in South Carolina',
-        source: 'National Network of Libraries of Medicine',
-        url: 'https://www.nnlm.gov/training/class/palmetto-connect-fostering-digital-inclusion-rural-south-carolina',
-        description:
-          'How SC libraries are leading digital inclusion efforts — a model for community-based AI education.',
-      },
-      {
+        date: '2025-01-06',
         title: 'South Carolina Industry Recruitment Reaches $8.19 Billion in 2024',
         source: 'SC Department of Commerce',
         url: 'https://www.sccommerce.com/news/south-carolina-industry-recruitment-reaches-819-billion-2024',
-        description:
-          'Record investment flowing into SC — AI-literate communities are best positioned to benefit.',
+        description: 'Record investment flowing into South Carolina. AI-literate communities are best positioned to benefit.',
+      },
+      {
+        date: '2025-01-14',
+        dateLabel: '2025–26 session',
+        title: 'Bill 3201: Computer Science Education Initiative Act',
+        source: 'SC Legislature',
+        url: 'https://www.scstatehouse.gov/sess126_2025-2026/bills/3201.htm',
+        description: 'Proposed legislation to expand computer science education in SC schools.',
+      },
+      {
+        date: '2024-10-14',
+        title: 'South Carolina Tech Industry Intensifies State’s Economic Growth',
+        source: 'Columbia Business Monthly',
+        url: 'https://www.columbiabusinessmonthly.com/2024/10/14/509275/new-study-south-carolina-tech-industry-intensifies-state-s-economic-growth',
+        description: 'SC’s tech economy is booming, but without AI literacy many communities won’t share in the growth.',
       },
     ],
   },
@@ -56,25 +77,19 @@ const articles = [
     category: 'Southeast US',
     items: [
       {
+        date: '2024-12-11',
+        dateLabel: 'Dec 2024',
         title: 'Georgia State to Build AI Literacy Program for Underserved Communities',
         source: 'GovTech',
         url: 'https://www.govtech.com/education/higher-ed/georgia-state-to-build-ai-literacy-program-for-underserved-communities',
-        description:
-          'A peer program in Georgia building AI literacy in communities that need it most — exactly what SCAiL is doing in SC.',
+        description: 'A peer program next door building AI literacy in communities that need it most.',
       },
       {
+        date: '2024-11-26',
         title: 'NC A&T Partnering in $25M Initiative to Boost AI Literacy Among Youth',
-        source: 'WUNC / NC Public Radio',
+        source: 'WUNC',
         url: 'https://www.wunc.org/education/2024-11-26/nc-a-t-state-university-ai-literacy-google',
-        description:
-          'Major investment in youth AI literacy next door in North Carolina shows the momentum building across the Southeast.',
-      },
-      {
-        title: 'aiEDU Program: AI Literacy for Underserved & Indigenous Students',
-        source: 'GovTech',
-        url: 'https://www.govtech.com/education/k-12/aiedu-program-to-improve-ai-literacy-for-rural-indigenous-students',
-        description:
-          'National programs reaching underserved communities with AI education — the model SCAiL adapts for South Carolina.',
+        description: 'Major investment in youth AI literacy in North Carolina shows the momentum building across the Southeast.',
       },
     ],
   },
@@ -82,29 +97,41 @@ const articles = [
     category: 'National & Global',
     items: [
       {
-        title: 'The AI Divide: Why Communities Are Being Left Behind',
-        source: 'The Builder Bureau',
-        url: 'https://thebuilderbureau.com/the-ai-divide-why-rural-communities-are-being-left-behind/',
-        description:
-          'A deep look at the growing gap between AI haves and have-nots — and why community-level programs matter.',
+        date: '2026-09-08',
+        title: 'Meta Launches Personal AI Agent Muse to Help With Everyday Tasks',
+        source: 'PBS NewsHour',
+        url: 'https://www.pbs.org/newshour/nation/meta-launches-personal-ai-agent-muse-to-help-with-everyday-tasks',
+        description: 'AI tools are starting to act on your behalf: booking, buying and filling out forms. A good reason to learn how they work before you hand them the keys.',
       },
       {
+        date: '2026-05-01',
+        title: 'aiEDU Opens 2026 Community Catalyst Grants for Rural and Indigenous AI Readiness',
+        source: 'aiEDU',
+        url: 'https://aiedu.org/catalyst-fund',
+        description: 'A national nonprofit funding local AI-readiness work in communities that are often overlooked, the same gap SCAiL works on in South Carolina.',
+      },
+      {
+        date: '2025-09-19',
         title: 'Why AI Readiness Requires Digital Literacy and Inclusion',
         source: 'Brookings Institution',
         url: 'https://www.brookings.edu/articles/why-ai-readiness-requires-digital-literacy-and-inclusion/',
-        description:
-          'Brookings makes the case that AI readiness starts with literacy and inclusion — the foundation of SCAiL\'s approach.',
-      },
-      {
-        title: 'AI Literacy and the New Digital Divide — A Global Call for Action',
-        source: 'UNESCO',
-        url: 'https://www.unesco.org/en/articles/ai-literacy-and-new-digital-divide-global-call-action',
-        description:
-          'UNESCO recognizes AI literacy as the next frontier of the digital divide. SCAiL answers that call locally.',
+        description: 'Brookings argues AI readiness starts with basic digital literacy and access, the foundation of SCAiL’s approach.',
       },
     ],
   },
-]
+].map((g) => ({ ...g, items: [...g.items].sort((a, b) => b.date.localeCompare(a.date)) }))
+
+const NEW_WITHIN_DAYS = 90
+
+function formatDate(a) {
+  if (a.dateLabel) return a.dateLabel
+  const d = new Date(`${a.date}T12:00:00`)
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })
+}
+
+function isNew(a) {
+  return (Date.now() - new Date(`${a.date}T12:00:00`).getTime()) / 86400000 <= NEW_WITHIN_DAYS
+}
 
 const FILTERS = [
   { id: 'all', label: 'All' },
@@ -120,9 +147,17 @@ const tools = [
   { name: 'Gemini', maker: 'Google', url: 'https://gemini.google.com', line: 'Google’s assistant. A natural place to start if you already use Google’s apps.' },
   { name: 'Microsoft Copilot', maker: 'Microsoft', url: 'https://copilot.microsoft.com', line: 'Microsoft’s assistant, open in any web browser. Good for quick questions and everyday writing.' },
   { name: 'NotebookLM', maker: 'Google', url: 'https://notebooklm.google.com', line: 'Answers questions using only the documents you give it. Good for studying and summarizing your own material.' },
+  { name: 'Meta Muse', maker: 'Meta', url: 'https://muse.ai', badge: 'New · Sept 2026', line: 'Meta’s personal AI agent. It can take actions for you, like booking or buying, so review every step before you approve it. U.S. only, 18+.' },
 ]
 
 const podcasts = [
+  ...FOUNDER_SHOWS.map((s) => ({
+    name: s.name,
+    host: 'Joshua German · SCAiL founder',
+    url: s.links.find((l) => l.label === 'Spotify')?.url ?? s.links[0].url,
+    line: s.line,
+    founder: true,
+  })),
   { name: 'The Artificial Intelligence Show', host: 'Paul Roetzer & Mike Kaput · SmarterX', url: 'https://podcast.smarterx.ai', line: 'Plain-spoken weekly conversations on what AI means for business and everyday work.' },
   { name: 'The AI Daily Brief', host: 'Nathaniel Whittemore', url: 'https://aidailybrief.ai', line: 'A short daily rundown of the day’s biggest AI news.' },
   { name: 'Hard Fork', host: 'Kevin Roose & Casey Newton · The New York Times', url: 'https://www.nytimes.com/column/hard-fork', line: 'Two tech journalists unpack the week’s technology news with context and humor.' },
@@ -132,6 +167,7 @@ const podcasts = [
 ]
 
 const creators = [
+  { name: 'Approachable AI', url: FOUNDER_SHOWS[0].links[0].url, line: 'SCAiL founder Joshua German’s plain-language AI videos.', founder: true },
   { name: 'Matt Wolfe', url: 'https://www.youtube.com/results?search_query=Matt+Wolfe+AI', line: 'Regular roundups of new AI tools and what they can do.' },
   { name: 'AI Explained', url: 'https://www.youtube.com/results?search_query=AI+Explained', line: 'Careful breakdowns of AI news and how the technology works.' },
   { name: 'Riley Brown', url: 'https://www.youtube.com/results?search_query=Riley+Brown+AI', line: 'Hands-on walkthroughs of using AI tools to build things.' },
@@ -147,6 +183,14 @@ const glossary = [
   { term: 'Model', def: 'The “brain” behind an AI tool: the program that was trained on huge amounts of text, images or other data and now generates the responses. Different companies build different models, and a single chatbot may use several.' },
   { term: 'Voice cloning scam', def: 'A scam where criminals copy someone’s voice, sometimes from just a short clip, and call pretending to be a grandchild, a boss or a relative in trouble. If a call asks for money urgently, hang up and call the person back on a number you already know. Many families also agree on a private code word.' },
   { term: 'Data privacy', def: 'Control over who gets to see and use your personal information. Anything you type into an AI tool may be stored or reviewed by the company, depending on its settings, so keep sensitive details out and check the privacy settings.' },
+  { term: 'Generative AI', def: 'AI that makes something new: writing, pictures, music, video or computer code. Chatbots and image generators are generative AI. What it makes can be useful, but it can also be wrong or made up.' },
+  { term: 'Large language model (LLM)', def: 'The kind of model behind most chatbots. It learned from an enormous amount of text and works by predicting what words should come next. That’s why it writes so fluently, and also why it can sound sure about things that aren’t true.' },
+  { term: 'Training data', def: 'The examples an AI learned from: books, websites, photos, conversations. An AI can only be as good, fair and up to date as what it was trained on, so it may not know recent news or local details.' },
+  { term: 'Bias', def: 'When an AI treats some people or ideas unfairly because of patterns in its training data. For example, it may describe certain jobs as belonging to certain groups. Notice it, question it, and don’t let it make important decisions about people on its own.' },
+  { term: 'AI agent', def: 'An AI that doesn’t just answer but takes actions for you, like filling out a form, booking a trip, sending an email or making a purchase. Agents can save time, but always check what one is about to do before you approve it.' },
+  { term: 'Multimodal', def: 'An AI that works with more than one kind of input, such as text, photos, voice or video. You might snap a picture of a plant, a receipt or a broken part and ask the AI about it.' },
+  { term: 'Phishing (AI-powered)', def: 'Fake emails, texts or messages designed to trick you into clicking a link or sharing information. AI makes them better written and more personal than they used to be. Slow down, check the sender, and never act on urgency alone.' },
+  { term: 'Fact-checking', def: 'Confirming something with a trusted source before you believe or share it. With AI, check names, numbers, dates, quotes, links, and anything about health, money or the law, because those are exactly where a wrong answer costs the most.' },
 ]
 
 function SectionHead({ eyebrow, tone, title, children }) {
@@ -156,6 +200,88 @@ function SectionHead({ eyebrow, tone, title, children }) {
       <h2 className="mt-5 text-4xl leading-[1.08] sm:text-6xl">{title}</h2>
       {children && <p className="mt-6 max-w-2xl text-lg text-ink-soft">{children}</p>}
     </div>
+  )
+}
+
+// "From our founder": Joshua's own shows, plus Joshua as a person to ask.
+function FounderFeature() {
+  const joshua = team.find((p) => p.id === 'joshua-german')
+  return (
+    <section className="mx-auto max-w-7xl px-5 sm:px-8 pt-24 sm:pt-28">
+      <Reveal>
+        <div className="grid overflow-hidden rounded-[2rem] border border-line bg-surface lg:grid-cols-[minmax(0,360px)_1fr]">
+          <div className="relative">
+            <Avatar person={joshua} className="h-full min-h-80 w-full" />
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/90 to-transparent p-6 text-moon">
+              <p className="eyebrow text-sea">From our founder</p>
+              <p className="mt-2 font-display text-3xl">{joshua.name}</p>
+            </div>
+          </div>
+          <div className="p-8 sm:p-12">
+            <h2 className="text-3xl leading-tight sm:text-5xl">
+              Learn with Joshua, <span className="text-gold">between classes.</span>
+            </h2>
+            <p className="mt-4 max-w-2xl text-lg text-ink-soft">
+              SCAiL’s founder makes two shows of his own. Questions about anything on this page? He’s happy to point you in the right direction.
+            </p>
+
+            <div className="mt-10 grid gap-5 md:grid-cols-2">
+              {FOUNDER_SHOWS.map((s) => (
+                <div key={s.id} className="flex flex-col rounded-3xl border border-line bg-paper p-6">
+                  <div className="flex items-center gap-4">
+                    {s.logo ? (
+                      <img src={asset(s.logo)} alt="" className="h-14 w-14 rounded-2xl object-cover" loading="lazy" />
+                    ) : (
+                      <span className="grid h-14 w-14 place-items-center rounded-2xl bg-night font-display text-2xl text-sun">EP</span>
+                    )}
+                    <div>
+                      <h3 className="text-2xl leading-tight">{s.name}</h3>
+                      <p className="eyebrow mt-1 text-muted">{s.kind}</p>
+                    </div>
+                  </div>
+                  <p className="mt-5 flex-1 text-ink-soft">{s.line}</p>
+                  {s.featured && (
+                    <a
+                      href={s.featured.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-gold"
+                    >
+                      {s.featured.label} <ArrowUpRight className="h-4 w-4" />
+                    </a>
+                  )}
+                  <div className="mt-5 flex flex-wrap gap-2 border-t border-line pt-5">
+                    {s.links.map((l) => (
+                      <a
+                        key={l.label}
+                        href={l.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 rounded-full border border-line px-3.5 py-1.5 text-sm font-semibold transition hover:border-ink/40"
+                      >
+                        {l.label} <ArrowUpRight className="h-3.5 w-3.5" />
+                      </a>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a
+                href={mailto({ subject: 'A question for Joshua', body: 'Hi Joshua,\n\n' })}
+                className="inline-flex items-center gap-2 rounded-full bg-ink px-6 py-3 font-semibold text-paper"
+              >
+                Ask Joshua a question <ArrowRight className="h-4 w-4" />
+              </a>
+              <Link to="/team" className="inline-flex items-center gap-2 rounded-full border border-line px-6 py-3 font-semibold">
+                Meet the board
+              </Link>
+            </div>
+          </div>
+        </div>
+      </Reveal>
+    </section>
   )
 }
 
@@ -238,6 +364,8 @@ export default function ResourcesPage() {
         </div>
       </div>
 
+      {(filter === 'all' || filter === 'listen' || filter === 'watch') && <FounderFeature />}
+
       <div key={filter} className="rise">
         {/* ── Try ─────────────────────────────────────────────────────────── */}
         {show('try') && (
@@ -272,7 +400,10 @@ export default function ResourcesPage() {
                     className="group flex h-full flex-col rounded-3xl border border-line bg-surface p-8 transition duration-300 hover:-translate-y-1 hover:border-ink/30 hover:shadow-[0_24px_60px_-30px_rgba(5,15,36,.5)]"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="eyebrow text-muted">{t.maker}</span>
+                      <span className="flex items-center gap-2">
+                        <span className="eyebrow text-muted">{t.maker}</span>
+                        {t.badge && <span className="rounded-full bg-sun px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-night">{t.badge}</span>}
+                      </span>
                       <ArrowUpRight className="h-5 w-5 text-muted transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink" />
                     </div>
                     <h3 className="mt-8 text-3xl">{t.name}</h3>
@@ -290,7 +421,7 @@ export default function ResourcesPage() {
             <div className="mx-auto max-w-7xl px-5 sm:px-8 py-28 sm:py-32">
               <Reveal>
                 <SectionHead eyebrow="Listen" tone="text-teal" title="Podcasts for the commute.">
-                  Six shows, from short daily briefings to long conversations. Pick one and try an episode or two.
+                  Short daily briefings, long conversations, and two shows from SCAiL’s own founder. Pick one and try an episode or two.
                 </SectionHead>
               </Reveal>
               <ul className="mt-14 border-t border-line">
@@ -305,7 +436,10 @@ export default function ResourcesPage() {
                       >
                         <div className="sm:col-span-6">
                           <h3 className="text-3xl leading-tight transition-colors group-hover:text-gold sm:text-4xl">{p.name}</h3>
-                          <p className="eyebrow mt-3 text-muted">{p.host}</p>
+                          <p className="eyebrow mt-3 text-muted">
+                            {p.host}
+                            {p.founder && <span className="ml-2 rounded-full bg-sun px-2 py-0.5 text-night">From our founder</span>}
+                          </p>
                         </div>
                         <p className="text-ink-soft sm:col-span-5">{p.line}</p>
                         <span className="flex items-center gap-1.5 font-semibold sm:col-span-1 sm:justify-end">
@@ -326,10 +460,10 @@ export default function ResourcesPage() {
           <section id="watch" className="mx-auto max-w-7xl px-5 sm:px-8 py-28 sm:py-32">
             <Reveal>
               <SectionHead eyebrow="Watch" tone="text-coral" title="Creators who explain AI on video.">
-                Each card opens a YouTube search for that creator, so you can pick whichever video looks most useful.
+                Each card opens YouTube to that creator, so you can pick whichever video looks most useful.
               </SectionHead>
             </Reveal>
-            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+            <div className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
               {creators.map((c, i) => (
                 <Reveal key={c.name} delay={i * 80}>
                   <a
@@ -339,7 +473,7 @@ export default function ResourcesPage() {
                     className="group flex h-full flex-col rounded-3xl border border-line bg-surface p-8 transition duration-300 hover:-translate-y-1 hover:border-ink/30 hover:shadow-[0_24px_60px_-30px_rgba(5,15,36,.5)]"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="eyebrow text-coral">YouTube</span>
+                      <span className="eyebrow text-coral">{c.founder ? 'From our founder' : 'YouTube'}</span>
                       <ArrowUpRight className="h-5 w-5 text-muted transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink" />
                     </div>
                     <h3 className="mt-8 text-3xl">{c.name}</h3>
@@ -379,7 +513,14 @@ export default function ResourcesPage() {
                                 <h4 className="font-display text-xl leading-snug transition-colors group-hover:text-gold sm:text-2xl">{a.title}</h4>
                                 <ArrowUpRight className="mt-1 h-5 w-5 shrink-0 text-muted transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-ink" />
                               </div>
-                              <p className="eyebrow mt-3 text-teal">{a.source}</p>
+                              <p className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5">
+                                <span className="eyebrow text-teal">{a.source}</span>
+                                <span className="eyebrow text-muted">·</span>
+                                <time dateTime={a.date} className="eyebrow text-muted">{formatDate(a)}</time>
+                                {isNew(a) && (
+                                  <span className="rounded-full bg-sun px-2 py-0.5 text-[11px] font-bold uppercase tracking-wider text-night">New</span>
+                                )}
+                              </p>
                               <p className="mt-3 text-ink-soft">{a.description}</p>
                             </a>
                           </Reveal>

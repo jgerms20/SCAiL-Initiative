@@ -8,6 +8,39 @@ export const SOCIAL = {
   x: 'https://x.com/SCAiLorg',
 }
 
+// Joshua's own shows, featured on the Resources page.
+// The Spotify/Apple/YouTube entries are search links (they always land on the
+// right show) because the exact show URLs weren't available when this was built.
+// Paste the direct links here when you have them; nothing else needs to change.
+export const FOUNDER_SHOWS = [
+  {
+    id: 'approachable-ai',
+    name: 'Approachable AI',
+    kind: 'Video series & podcast',
+    logo: 'media/approachable-ai.png',
+    line: 'Joshua’s show on using AI without the jargon: what the tools actually do, and how to start building with them.',
+    links: [
+      { label: 'YouTube', url: 'https://www.youtube.com/results?search_query=Approachable+AI+Joshua+German' },
+      { label: 'Spotify', url: 'https://open.spotify.com/search/Approachable%20AI/podcasts' },
+    ],
+  },
+  {
+    id: 'eclectic-polymath',
+    name: 'The Eclectic Polymath Podcast',
+    kind: 'Podcast',
+    line: 'Deep dives on history, culture, religion, world leaders and technology, with new episodes every week.',
+    featured: {
+      label: 'Start with: Anthropic by the Numbers',
+      url: 'https://open.spotify.com/episode/1sPFk3tLCuKqSKlX5gvwFh',
+    },
+    links: [
+      { label: 'Spotify', url: 'https://open.spotify.com/search/The%20Eclectic%20Polymath%20Podcast/podcasts' },
+      { label: 'Apple Podcasts', url: 'https://podcasts.apple.com/us/search?term=The%20Eclectic%20Polymath%20Podcast' },
+      { label: 'X', url: 'https://x.com/Eclectic_Plymth' },
+    ],
+  },
+]
+
 export const NAV = [
   { to: '/', label: 'Home' },
   { to: '/programs', label: 'Programs' },

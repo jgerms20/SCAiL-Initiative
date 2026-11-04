@@ -15,7 +15,7 @@ export const team = [
     role: 'Founder & President',
     hometown: 'Irmo, SC',
     focus: 'Vision, partnerships, storytelling',
-    photo: null,
+    photo: 'team/joshua-german.jpg',
     linkedin: null,
     bio: 'Born and raised in Irmo and a Dutch Fork High School graduate, with family roots in Walterboro and Charleston. Joshua studied journalism at the University of South Carolina, attended Midlands Technical College, and built a career in advertising and marketing before founding SCAiL in 2026 to make sure AI reaches every community in the state.',
   },
