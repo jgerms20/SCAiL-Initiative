@@ -43,7 +43,7 @@ export default function NightScene({ children, variant = 'band', moon = true, cl
       {/* the hero gets one big white palmetto, like the flag */}
       {hero && (
         <Palmetto
-          className="pointer-events-none absolute -z-10 bottom-0 right-[2%] h-[62%] max-h-[620px] text-moon origin-bottom animate-sway hidden md:block"
+          className="pointer-events-none absolute -z-10 bottom-0 right-[2%] h-[34%] xl:h-[46%] max-h-[620px] text-moon origin-bottom animate-sway hidden md:block"
           style={{ filter: 'drop-shadow(0 0 60px rgba(70,211,196,.18))' }}
         />
       )}
